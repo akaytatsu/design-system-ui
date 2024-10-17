@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   Button,
@@ -7,38 +7,38 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components';
+} from "@/components";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@/components/ui/command';
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Icons } from '@/index';
-import { cn, debounce } from '@/lib/utils';
-import { VariantProps, cva } from 'class-variance-authority';
-import { CommandList } from 'cmdk';
-import { Check, ChevronDown, X } from 'lucide-react';
-import { Tag } from '../tag';
+} from "@/components/ui/popover";
+import { Icons } from "@/index";
+import { cn, debounce } from "@/lib/utils";
+import { VariantProps, cva } from "class-variance-authority";
+import { CommandList } from "cmdk";
+import { Check, ChevronDown, X } from "lucide-react";
+import { Tag } from "../tag";
 
 const selectVariants = cva(
-  'flex justify-between items-center rounded border border-solid whitespace-nowrap border-muted-foreground p-3 h-10 w-full bg-white cursor-pointer',
+  "flex justify-between items-center rounded border border-solid whitespace-nowrap border-muted-foreground p-3 h-10 w-full bg-white cursor-pointer",
   {
     variants: {
       size: {
-        large: 'h-12',
-        medium: 'h-10',
-        small: 'h-8',
+        large: "h-12",
+        medium: "h-10",
+        small: "h-8",
       },
     },
     defaultVariants: {
-      size: 'medium',
+      size: "medium",
     },
   },
 );
@@ -74,9 +74,9 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
       multiple = false,
       options,
       className,
-      size = 'medium',
+      size = "medium",
       label,
-      placeholder = 'Selecione',
+      placeholder = "Selecione",
       loading,
       moreLoading,
       totalRegisters,
@@ -91,9 +91,9 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const [filteredItems, setFilteredItems] = useState<SelectItemOptions[]>([]);
     const [openCombobox, setOpenCombobox] = useState(false);
-    const [inputValue, setInputValue] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>("");
     const [selectedItems, setSelectedItems] = useState<SelectItemOptions[]>([]);
-    const [error, setError] = useState<string>(errorParent || '');
+    const [error, setError] = useState<string>(errorParent || "");
     const [searchLoading, setSearchLoading] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
 
@@ -101,7 +101,7 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
     const debouncedSearch = useCallback(
       debounce(async (searchValue: string) => {
         try {
-          setError('');
+          setError("");
           if (!searchValue) {
             setIsSearching(false);
             setFilteredItems([]);
@@ -115,8 +115,8 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
             setIsSearching(true);
           }
         } catch (error) {
-          console.error('Erro ao buscar itens', error);
-          setError('Ocorreu um erro');
+          console.error("Erro ao buscar itens", error);
+          setError("Ocorreu um erro");
         } finally {
           setSearchLoading(false);
         }
@@ -200,8 +200,8 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
 
     const getAnimationStyle = () =>
       openCombobox
-        ? 'transition ease-in-out transform rotate-180 duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none'
-        : 'transition ease-in-out transform rotate-[360deg] duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none';
+        ? "transition ease-in-out transform rotate-180 duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none"
+        : "transition ease-in-out transform rotate-[360deg] duration-300 motion-reduce:transition-none motion-reduce:hover:transform-none";
 
     //TODO: Não apagar lógica de scroll bottom
     // const handleScrollBottom = async (
@@ -232,10 +232,10 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
     const getContainerWithLabelHeight = (size: string): string => {
       return (
         {
-          large: 'h-16',
-          medium: 'h-14',
-          small: 'h-12',
-        }[size] ?? ''
+          large: "h-16",
+          medium: "h-14",
+          small: "h-12",
+        }[size] ?? ""
       );
     };
 
@@ -294,12 +294,12 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
           <PopoverTrigger asChild>
             <div
               className={cn(
-                'flex flex-col justify-center items-start w-full',
+                "flex w-full flex-col items-start justify-center",
                 !!label && getContainerWithLabelHeight(size!),
               )}
             >
               {label && (
-                <span className="mb-1 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-primary/75 font-medium text-xs ml-0">
+                <span className="mb-1 ml-0 text-xs font-medium text-primary/75 peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                   <label htmlFor="focusDiv">{label}</label>
                 </span>
               )}
@@ -310,9 +310,9 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
                 role="combobox"
                 aria-expanded={openCombobox}
                 className={cn(
-                  selectVariants({ size: size ?? 'medium', className }),
+                  selectVariants({ size: size ?? "medium", className }),
                   {
-                    'bg-neutral_high-light text-accent-foreground opacity-50 cursor-not-allowed':
+                    "cursor-not-allowed bg-neutral_high-light text-accent-foreground opacity-50":
                       disabled,
                   },
                 )}
@@ -320,17 +320,17 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
                 <span
                   className={`truncate text-sm font-normal ${
                     isNotSelectedYet()
-                      ? 'text-muted-foreground'
-                      : 'text-neutral_low'
+                      ? "text-muted-foreground"
+                      : "text-neutral_low"
                   } select-none`}
                 >
                   {isNotSelectedYet() &&
-                    (loading ? 'Carregando...' : placeholder)}
+                    (loading ? "Carregando..." : placeholder)}
                   {isOnlyOneSelected() && !multiple && selectedItems[0].label}
                   {moreThanOrEqualOneSelected() && multiple && (
                     <Tag
                       label={selectedItems[0].label}
-                      variant={'default'}
+                      variant={"default"}
                       closeable
                       onClose={() => onCloseHandler(selectedItems[0])}
                     />
@@ -341,19 +341,20 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
                         <TooltipTrigger asChild>
                           <Tag
                             label={`+ ${selectedItems.length - 1}`}
-                            variant={'default'}
+                            variant={"default"}
                             className="ml-1"
                           />
                         </TooltipTrigger>
                         <TooltipContent
                           side="bottom"
-                          className="flex items-center max-w-[300px] flex-wrap gap-1"
+                          className="flex max-w-[300px] flex-wrap items-center gap-1"
                         >
                           {selectedItems.map((item, index) =>
                             index > 0 ? (
                               <Tag
+                                key={index}
                                 label={item.label}
-                                variant={'default'}
+                                variant={"default"}
                                 closeable
                                 onClose={() => onCloseHandler(item)}
                                 className=""
@@ -368,26 +369,26 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
                 {selectedItems?.length ? (
                   <div
                     title="Limpar"
-                    className="absolute right-8 bottom-[0.35rem] flex flex-col justify-center items-center p-1 mt-1 mx-1.5 rounded-full hover:bg-muted cursor-pointer"
+                    className="absolute bottom-[0.35rem] right-8 mx-1.5 mt-1 flex cursor-pointer flex-col items-center justify-center rounded-full p-1 hover:bg-muted"
                     onClick={(e: any) => {
                       e.stopPropagation();
                       setSelectedItems([]);
                       onChangeValue([]);
                     }}
                   >
-                    <X className="h-4 w-4 opacity-50 stroke-muted-foreground" />
+                    <X className="h-4 w-4 stroke-muted-foreground opacity-50" />
                   </div>
                 ) : null}
 
-                <div className="h-full flex justify-center items-center">
+                <div className="flex h-full items-center justify-center">
                   <ChevronDown
-                    className={`text-brand ml-2 w-6 h-6 shrink-0 ${getAnimationStyle()}`}
+                    className={`ml-2 h-6 w-6 shrink-0 text-brand ${getAnimationStyle()}`}
                   />
                 </div>
               </div>
             </div>
           </PopoverTrigger>
-          <PopoverContent className="p-0 mt-1 PopoverContent">
+          <PopoverContent className="PopoverContent mt-1 p-0">
             <Command className="rounded-md" shouldFilter={!onSearch}>
               <div className="relative">
                 <CommandInput
@@ -397,19 +398,19 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
                   onValueChange={onValueChangeHandler}
                 />
                 {searchLoading ? (
-                  <div className="absolute top-0 right-0 h-11 w-10 bg-white flex justify-center items-center">
+                  <div className="absolute right-0 top-0 flex h-11 w-10 items-center justify-center bg-white">
                     <Icons.Loader2 className="h-4 w-4 animate-fast-spin stroke-brand" />
                   </div>
                 ) : inputValue ? (
                   <div
                     title="Limpar"
-                    className="absolute right-0 bottom-[0.55rem] flex flex-col justify-center items-center p-1 mt-1 mx-1.5 rounded-full hover:bg-muted cursor-pointer"
+                    className="absolute bottom-[0.55rem] right-0 mx-1.5 mt-1 flex cursor-pointer flex-col items-center justify-center rounded-full p-1 hover:bg-muted"
                     onClick={(e: any) => {
                       e.stopPropagation();
-                      onValueChangeHandler('');
+                      onValueChangeHandler("");
                     }}
                   >
-                    <X className="h-4 w-4 opacity-50 stroke-muted-foreground" />
+                    <X className="h-4 w-4 stroke-muted-foreground opacity-50" />
                   </div>
                 ) : null}
               </div>
@@ -419,7 +420,7 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
                 ) : (
                   <>
                     <CommandGroup
-                      className="max-h-[190px] overflow-x-hidden overflow-y-auto"
+                      className="max-h-[190px] overflow-y-auto overflow-x-hidden"
                       // onScroll={handleScrollBottom}
                     >
                       <RenderItems />
@@ -447,7 +448,7 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
             value={`${inputValue}`}
             className="text-xs text-muted-foreground"
           >
-            <div className={cn('mr-2 h-4 w-4')} />
+            <div className={cn("mr-2 h-4 w-4")} />
             Não há registros
           </CommandItem>
         );
@@ -456,21 +457,21 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
         <>
           {!isSearching &&
             !filteredItems?.length &&
-            orderedOptions()?.map((item) => {
+            orderedOptions()?.map((item, index) => {
               const isActive = selectedItems.some(
                 (selectedItem) => selectedItem.value == item.value,
               );
               return (
                 <CommandItem
-                  key={item.value}
+                  key={index}
                   value={item.label}
                   onSelect={() => toggleItem(item)}
                   className="hover:cursor-pointer"
                 >
                   <Check
                     className={cn(
-                      'mr-2 h-4 w-4',
-                      isActive ? 'opacity-100' : 'opacity-0',
+                      "mr-2 h-4 w-4",
+                      isActive ? "opacity-100" : "opacity-0",
                     )}
                   />
                   <div className="flex-1">
@@ -490,17 +491,17 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
           totalRegisters &&
           options &&
           totalRegisters > options?.length ? (
-            <div className="w-full flex flex-col justify-center items-center">
+            <div className="flex w-full flex-col items-center justify-center">
               <Separator className="w-full" />
               <Button
                 className="my-2"
-                variant={'ghost'}
+                variant={"ghost"}
                 type="button"
                 onClick={() => (moreLoading ? null : onFetchMore?.())}
-                size={'sm'}
+                size={"sm"}
                 disabled={moreLoading}
               >
-                {moreLoading ? 'Carregando...' : 'Carregar mais'}
+                {moreLoading ? "Carregando..." : "Carregar mais"}
               </Button>
             </div>
           ) : null}
@@ -511,25 +512,25 @@ export const SelectAdvanced = React.forwardRef<HTMLInputElement, SelectProps>(
     function RenderfilteredItems() {
       /* API Data list for Fetched Items*/
       return isSearching && !filteredItems?.length ? (
-        <div className="w-full flex justify-center items-center text-muted-foreground p-1 text-sm">
+        <div className="flex w-full items-center justify-center p-1 text-sm text-muted-foreground">
           Nenhum resultado encontrado
         </div>
       ) : isSearching ? (
-        filteredItems?.map((fetchedItem) => {
+        filteredItems?.map((fetchedItem, fetchIndex) => {
           const isActive = selectedItems.some(
             (selectedItem) => selectedItem.value === fetchedItem.value,
           );
           return (
             <CommandItem
-              key={fetchedItem.value}
+              key={fetchIndex}
               value={fetchedItem.label}
               onSelect={() => toggleItem(fetchedItem)}
               className="hover:cursor-pointer"
             >
               <Check
                 className={cn(
-                  'mr-2 h-4 w-4',
-                  isActive ? 'opacity-100' : 'opacity-0',
+                  "mr-2 h-4 w-4",
+                  isActive ? "opacity-100" : "opacity-0",
                 )}
               />
               <div className="flex-1">{fetchedItem.label}</div>

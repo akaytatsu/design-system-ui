@@ -1,5 +1,5 @@
-import { X } from 'lucide-react';
-import { SelectItemOptions } from '.';
+import { X } from "lucide-react";
+import { SelectItemOptions } from ".";
 import {
   FormControl,
   Select,
@@ -7,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../ui';
+} from "../../ui";
 
 type Props = {
   field?: any;
@@ -27,8 +27,8 @@ export function SelectBasic({
   onChange,
 }: Props) {
   const clear = () => {
-    field?.onChange('');
-    if (onChange) onChange('');
+    field?.onChange("");
+    if (onChange) onChange("");
   };
   return (
     <Select
@@ -49,20 +49,20 @@ export function SelectBasic({
           {field?.value && !disabledClear ? (
             <div
               title="Limpar"
-              className="absolute right-6 bottom-[0.55rem] flex flex-col justify-center items-center p-1 mt-0.5 mx-1.5 rounded-full hover:bg-muted cursor-pointer"
+              className="absolute bottom-[0.55rem] right-6 mx-1.5 mt-0.5 flex cursor-pointer flex-col items-center justify-center rounded-full p-1 hover:bg-muted"
               onClick={(e: any) => {
                 e.stopPropagation();
                 clear();
               }}
             >
-              <X className="h-3.5 w-3.5 opacity-50 stroke-muted-foreground" />
+              <X className="h-3.5 w-3.5 stroke-muted-foreground opacity-50" />
             </div>
           ) : null}
         </div>
       </FormControl>
       <SelectContent>
-        {options?.map(({ label, value, description }) => (
-          <SelectItem key={value} value={`${value}`} className="cursor-pointer">
+        {options?.map(({ label, value, description }, index) => (
+          <SelectItem key={index} value={`${value}`} className="cursor-pointer">
             {label}
             {description && (
               <div className="text-xs text-muted-foreground">{description}</div>
