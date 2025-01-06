@@ -153,7 +153,7 @@ export function SidebarMenu({ links, isCollapsed }: NavProps) {
                           onClick={() => subItem.onClick?.()}
                           className={cn(
                             "group flex h-11 cursor-pointer items-center justify-start truncate border-l-4 pl-3.5 text-sm font-medium hover:border-brand hover:bg-brand/10 hover:text-brand",
-                            link.active
+                            subItem.active
                               ? "border-brand bg-brand/10 text-brand"
                               : "border-white text-muted-foreground",
                           )}

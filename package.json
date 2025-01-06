@@ -1,7 +1,7 @@
 {
   "name": "@vert-capital/design-system-ui",
   "private": false,
-  "version": "1.0.26",
+  "version": "1.0.27",
   "target": "es6",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
