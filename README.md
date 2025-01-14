@@ -9,5 +9,5 @@ O VERS é um sistema de design ágil e moderno para desenvolvimento de interface
 Para começar a usar o VERS em seu projeto, adicione-o via pnpm:
 
 ```bash
-pnpm install @vert-capital/design-system-ui
+pnpm install @nesha/design-system-ui
 ```

@@ -29,7 +29,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       formats: ['es', 'cjs'],
-      name: '@vert-capital/design-system-ui',
+      name: '@nesha/design-system-ui',
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
